@@ -1,5 +1,5 @@
 /*
- * Portal theme: modern and confident. Emerald brand, amber accent, deep forest green for dark bands, soft tinted canvas,
+ * Portal theme: modern and confident. Teal brand, coral accent, deep ocean teal for dark bands, soft tinted canvas,
  * large rounded corners and layered shadows. Colours are reset first so only the tokens below exist as
  * utilities (bg-brand-600, text-ink, bg-night, font-display ...).
  */
@@ -9,29 +9,29 @@
   --color-*: initial;
 
   --color-white: #fff;
-  --color-canvas: #f5faf7;
+  --color-canvas: #f3fafb;
   --color-surface: #fff;
-  --color-line: #dce9e2;
-  --color-ink: #08140f;
-  --color-ink-muted: #51635b;
-  --color-night: #020d09;
-  --color-night-soft: #07190f;
+  --color-line: #d6e9ec;
+  --color-ink: #07191d;
+  --color-ink-muted: #4b6268;
+  --color-night: #03141a;
+  --color-night-soft: #062029;
 
-  --color-brand-50: #ecfdf5;
-  --color-brand-100: #d1fae5;
-  --color-brand-200: #a7f3d0;
-  --color-brand-300: #6ee7b7;
-  --color-brand-400: #10b981;
-  --color-brand-500: #059669;
-  --color-brand-600: #036348;
-  --color-brand-700: #054d38;
-  --color-brand-800: #043c2c;
-  --color-brand-900: #022219;
+  --color-brand-50: #effcfb;
+  --color-brand-100: #cdf7f4;
+  --color-brand-200: #9aebe7;
+  --color-brand-300: #5fd8d6;
+  --color-brand-400: #22bcc0;
+  --color-brand-500: #0e9aa7;
+  --color-brand-600: #0b7285;
+  --color-brand-700: #0a5c6d;
+  --color-brand-800: #0a4a58;
+  --color-brand-900: #07333d;
 
-  --color-accent-300: #fcd34d;
-  --color-accent-400: #f59e0b;
-  --color-accent-500: #d97706;
-  --color-accent-600: #b45309;
+  --color-accent-300: #ffb199;
+  --color-accent-400: #ff8a65;
+  --color-accent-500: #f4623a;
+  --color-accent-600: #d84a22;
 
   --color-success: #2f7d4f;
   --color-warning: #b7791f;
@@ -44,8 +44,8 @@
   --radius-lg: 1.5rem;
   --radius-xl: 2rem;
 
-  --shadow-soft: 0 1px 2px rgb(15 31 25 / 0.04), 0 8px 24px -8px rgb(4 120 87 / 0.14);
-  --shadow-lift: 0 2px 4px rgb(15 31 25 / 0.05), 0 20px 40px -12px rgb(4 120 87 / 0.3);
+  --shadow-soft: 0 1px 2px rgb(7 25 29 / 0.04), 0 8px 24px -8px rgb(11 114 133 / 0.16);
+  --shadow-lift: 0 2px 4px rgb(7 25 29 / 0.05), 0 20px 40px -12px rgb(11 114 133 / 0.32);
 
   /* Type scale shifted one step smaller than Tailwind's default. */
   --text-xs: 0.6875rem;

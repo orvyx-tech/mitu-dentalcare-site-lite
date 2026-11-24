@@ -4,7 +4,7 @@ import type { Messages } from '../lib/i18n'
 /** The plans of one service as cards. `Heading` is the level of each plan title (h3 under a section heading). */
 export function PricingPlans({ plans, messages, Heading = 'h3' }: { plans: PricingPlan[]; messages: Messages; Heading?: 'h3' | 'h4' }) {
   return (
-    <ul className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+    <ul className="grid gap-6 md:grid-cols-3">
       {plans.map((p) => (
         <li
           key={p.id}

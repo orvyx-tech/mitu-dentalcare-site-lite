@@ -1,6 +1,6 @@
 # Overview: what this site is and what you get
 
-A fast, simple website for a small local business (the sample is a bakery, "Riverside Bakery"). It has no admin login,
+A fast, simple website for a small local business (the content is Mitu Dental Care, a dental clinic). It has no admin login,
 no database and no server to look after: it is a set of ready-made pages you put on any web host.
 
 ## Built with

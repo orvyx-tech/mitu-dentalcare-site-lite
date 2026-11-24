@@ -8,14 +8,14 @@ export interface ContactMethod {
   href: string
 }
 
-/** Call, WhatsApp and email links, each only when its flag in settings.js is on and its value is set. */
+/** Call, WhatsApp and email links, each only when its flag in settings.js is on and its value is set. One number only: WhatsApp is dropped when a call link is shown. */
 export function contactMethods(settings: Settings, labels: { call: string; whatsapp: string; email: string }): ContactMethod[] {
   const methods: ContactMethod[] = []
   if (settings.contact.call && settings.phone) methods.push({ key: 'call', label: labels.call, text: settings.phone, href: `tel:${settings.phone.replace(/\s+/g, '')}` })
   if (settings.contact.whatsapp && settings.whatsapp) methods.push({ key: 'whatsapp', label: labels.whatsapp, text: `+${settings.whatsapp}`, href: `https://wa.me/${settings.whatsapp}` })
   if (settings.contact.email && settings.email) methods.push({ key: 'email', label: labels.email, text: settings.email, href: `mailto:${settings.email}` })
 
-  return methods
+  return methods.some((m) => m.key === 'call') ? methods.filter((m) => m.key !== 'whatsapp') : methods
 }
 
 /** The map link: `map_url` from settings.js, else a maps search for the address; null when the map flag is off. */
