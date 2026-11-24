@@ -1,6 +1,6 @@
-# gd-business-site-lite-starter
+# mitu-dentalcare-site-lite
 
-Lite business site starter: one Next.js site at the repo root, no backend, no database. Cloned from
+Lite business site (Mitu Dental Care): one Next.js site at the repo root, no backend, no database. Cloned from
 gd-business-site-boilerplate (see docs/SYNC.md).
 
 ## Stack
@@ -15,7 +15,7 @@ gd-business-site-boilerplate (see docs/SYNC.md).
 - `public/`, `e2e/`, `docker/` (node dev script, nginx preview), `scripts/`, `docs/`
 
 ## Docker and env
-- Containers: `gd-business-site-lite-starter-<tech>` (node, build, nginx), via COMPOSE_PROJECT_NAME
+- Containers: `mitu-dentalcare-site-lite-<tech>` (node, build, nginx), via COMPOSE_PROJECT_NAME
 - Root `.env` (from `.env.example`) holds Docker and shared settings only; no app secrets in it beyond placeholders
 - Ports, env-configured: LITE_DEV_PORT=28310 (Next dev), LITE_PREVIEW_PORT=28390 (nginx preview of ./out); both bound to 127.0.0.1
 

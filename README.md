@@ -1,4 +1,4 @@
-# gd-business-site-lite-starter
+# mitu-dentalcare-site-lite
 
 A small business website: one Next.js 16 site, no backend, no database. Content lives in `src/data/*.js`; the build
 produces plain files in `./out` that any static host can serve. English plus an optional second language (Bengali in the sample).
