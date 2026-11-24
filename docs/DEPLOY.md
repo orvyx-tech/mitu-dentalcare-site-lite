@@ -28,7 +28,7 @@ A target that is not configured is not an error: its job runs, prints a notice a
 
 | Target | Switch on |
 |--------|-----------|
-| GitHub Pages | variable `DEPLOY_GITHUB_PAGES=true`, and Settings > Pages > Source: GitHub Actions. The workflow builds this target separately with the right base path: a project site is served from `/<repo-name>/`, a custom domain or user site from `/` |
+| GitHub Pages | on by default (variable `DEPLOY_GITHUB_PAGES=false` turns it off); needs Settings > Pages > Source: GitHub Actions. The workflow builds this target separately with the right base path: a project site is served from `/<repo-name>/`, a custom domain or user site from `/` |
 | Cloudflare Pages | secrets `CLOUDFLARE_API_TOKEN` (Pages: Edit) and `CLOUDFLARE_ACCOUNT_ID`, variable `CLOUDFLARE_PROJECT` |
 | Netlify | secrets `NETLIFY_AUTH_TOKEN` and `NETLIFY_SITE_ID` |
 

@@ -61,20 +61,15 @@ const Hero: SectionView = ({ section, locale, messages }) => {
 
   return (
   <section id={section.key} aria-labelledby="hero-title" className="relative isolate overflow-hidden bg-night text-white">
-    {/* Banner (or a gradient when none is uploaded) under a dark scrim, so the text and buttons are readable on any image. */}
-    {section.image ? (
-      <Img image={section.image} priority sizes="100vw" className="absolute inset-0 -z-20 size-full object-cover" />
-    ) : (
-      <div aria-hidden="true" className="absolute inset-0 -z-20 bg-gradient-to-br from-brand-800 via-brand-900 to-night" />
+    {/* Gradient banner; the picture sits on the right and fades into it, so the text stays readable. */}
+    <div aria-hidden="true" className="absolute inset-0 -z-20 bg-gradient-to-br from-brand-900 via-brand-800 to-brand-600" />
+    {section.image && (
+      <div aria-hidden="true" className="absolute inset-y-0 end-0 -z-10 w-full opacity-40 [mask-image:linear-gradient(to_right,transparent,black_70%)] md:w-3/5 md:opacity-100 md:[mask-image:linear-gradient(to_right,transparent,black_45%)] rtl:[mask-image:linear-gradient(to_left,transparent,black_70%)] md:rtl:[mask-image:linear-gradient(to_left,transparent,black_45%)]">
+        <Img image={section.image} priority sizes="(min-width: 768px) 60vw, 100vw" className="size-full object-cover object-center" />
+      </div>
     )}
-    <div aria-hidden="true" className="absolute inset-0 -z-10 bg-gradient-to-r from-night/90 via-night/70 to-night/40 rtl:bg-gradient-to-l" />
-    <div aria-hidden="true" className="absolute inset-x-0 bottom-0 -z-10 h-1/3 bg-gradient-to-t from-night/60 to-transparent" />
-    {!section.image && (
-      <>
-        <div aria-hidden="true" className="pointer-events-none absolute -top-24 -end-24 -z-10 size-[26rem] rounded-full bg-brand-500/30 blur-3xl" />
-        <div aria-hidden="true" className="pointer-events-none absolute -bottom-32 -start-24 -z-10 size-[22rem] rounded-full bg-accent-400/20 blur-3xl" />
-      </>
-    )}
+    <div aria-hidden="true" className="pointer-events-none absolute -top-24 -start-24 -z-10 size-[26rem] rounded-full bg-brand-400/20 blur-3xl" />
+    <div aria-hidden="true" className="pointer-events-none absolute -bottom-32 start-1/3 -z-10 size-[20rem] rounded-full bg-accent-400/15 blur-3xl" />
     <div className="mx-auto w-[92%] max-w-7xl py-20 sm:py-28 lg:py-36">
       <div className="max-w-2xl space-y-6 text-center md:text-start">
         <h1 id="hero-title" className="font-display text-4xl leading-[1.08] font-extrabold tracking-tight text-balance text-white drop-shadow-sm sm:text-5xl lg:text-6xl">
@@ -124,6 +119,7 @@ const About: SectionView = ({ section, page }) => {
   )
 }
 
+/** Three columns from tablet up: keep 3, 6 or 9 services so no row is left half empty. */
 const Services: SectionView = async ({ section, locale, messages, page }) => {
   const items = getContent(locale).services
 
@@ -132,11 +128,11 @@ const Services: SectionView = async ({ section, locale, messages, page }) => {
       {items.length === 0 ? (
         <p className="text-center text-ink-muted">{messages.sections.empty}</p>
       ) : (
-        <ul className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+        <ul className="grid gap-6 md:grid-cols-3">
           {items.map((s, i) => (
-            <li key={s.id} className={`${card} group flex flex-col`}>
+            <li key={s.id} className={`${card} group flex flex-col items-center text-center`}>
               {s.image ? (
-                <Img image={s.image} sizes="48px" className="mb-5 size-12 rounded-md object-cover shadow-soft" />
+                <Img image={s.image} sizes="(min-width: 768px) 14vw, 40vw" className="mb-5 aspect-square w-2/5 rounded-md object-cover shadow-soft" />
               ) : (
                 <span aria-hidden="true" className="mb-5 flex size-12 items-center justify-center rounded-md bg-gradient-to-br from-brand-500 to-brand-700 text-lg font-bold text-white shadow-soft">
                   {String(i + 1).padStart(2, '0')}
