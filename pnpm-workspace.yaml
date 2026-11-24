@@ -1,0 +1,3 @@
+# Settings only (pnpm 12 reads them here); this is not a workspace. Next pins an older postcss than our floor (docs/VERSIONS.md).
+overrides:
+  postcss: 8.5.32

@@ -1,0 +1,43 @@
+// Fails when an installed or pinned version is below the floor in docs/VERSIONS.md.
+// Sources: .env *_VERSION pins (images), pnpm-lock.yaml (JS packages).
+import { readFileSync, existsSync } from 'node:fs'
+
+const rows = readFileSync('docs/VERSIONS.md', 'utf8')
+  .split('\n')
+  .filter((l) => l.startsWith('| ') && !l.startsWith('| Component') && !l.startsWith('|--'))
+  .map((l) => l.split('|').map((c) => c.trim()))
+  .map((c) => ({ name: c[1], floor: (c[3].match(/\d+\.\d+\.\d+/) ?? [])[0] }))
+  .filter((r) => r.floor)
+
+const floorOf = (re) => rows.find((r) => re.test(r.name))?.floor
+const cmp = (a, b) => {
+  const [x, y] = [a, b].map((v) => v.replace(/^v/, '').split('.').map(Number))
+  for (let i = 0; i < 3; i++) if ((x[i] ?? 0) !== (y[i] ?? 0)) return (x[i] ?? 0) - (y[i] ?? 0)
+  return 0
+}
+
+const checks = []
+const env = existsSync('.env') ? readFileSync('.env', 'utf8') : readFileSync('.env.example', 'utf8')
+for (const [key, row] of Object.entries({ NODE_VERSION: /^Node/, NGINX_VERSION: /^nginx/ })) {
+  const v = env.match(new RegExp(`^${key}=(.+)$`, 'm'))?.[1]
+  if (v) checks.push([key, v, floorOf(row)])
+}
+
+const pnpm = existsSync('pnpm-lock.yaml') ? readFileSync('pnpm-lock.yaml', 'utf8') : ''
+const js = { next: /^Next/, react: /^React/, 'react-dom': /^React/, tailwindcss: /^tailwindcss$/, postcss: /^postcss$/, typescript: /^typescript$/, zod: /^Zod$/, sharp: /^sharp$/ }
+const installed = new Map()
+for (const line of pnpm.split(/\r?\n/)) {
+  const m = /^ {2}'?(.+?)@(\d+\.\d+\.\d+)'?:$/.exec(line)
+  if (m && !installed.has(m[1])) installed.set(m[1], m[2])
+}
+for (const [name, row] of Object.entries(js)) if (installed.has(name)) checks.push([name, installed.get(name), floorOf(row)])
+
+let bad = 0
+for (const [name, have, floor] of checks) {
+  if (!floor) continue
+  const ok = cmp(have, floor) >= 0
+  if (!ok) bad++
+  console.log(`${ok ? 'ok   ' : 'BELOW'} ${name} ${have} (floor ${floor})`)
+}
+console.log(bad ? `floors: ${bad} below floor` : `floors: ok (${checks.length} checked)`)
+process.exit(bad ? 1 : 0)

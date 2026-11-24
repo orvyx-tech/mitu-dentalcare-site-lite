@@ -1,0 +1,13 @@
+# Build context: source only, never env files, dependencies or build output.
+.git
+.cache
+.env
+.env.*
+!.env.example
+**/node_modules
+**/.next
+**/.next-build
+**/dist
+out
+**/coverage
+**/*.log

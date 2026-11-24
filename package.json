@@ -1,0 +1,35 @@
+{
+  "name": "gd-business-site-lite-starter",
+  "private": true,
+  "type": "module",
+  "packageManager": "pnpm@12.18.0",
+  "engines": {
+    "node": ">=24"
+  },
+  "scripts": {
+    "dev": "node scripts/images.js && next dev --hostname 0.0.0.0 --port ${LITE_DEV_PORT:-28310}",
+    "images": "node scripts/images.js",
+    "validate": "node scripts/validate-data.js",
+    "test:data": "node --test scripts/*.test.js",
+    "build": "node scripts/validate-data.js && node scripts/images.js && next build",
+    "typecheck": "node scripts/images.js && tsc --noEmit"
+  },
+  "dependencies": {
+    "next": "16.4.6",
+    "react": "19.3.1",
+    "react-dom": "19.3.1",
+    "zod": "4.6.7",
+    "sharp": "0.35.5"
+  },
+  "devDependencies": {
+    "@axe-core/playwright": "4.14.0",
+    "@playwright/test": "1.65.0",
+    "@tailwindcss/postcss": "4.3.5",
+    "@types/node": "24.19.2",
+    "@types/react": "19.3.0",
+    "@types/react-dom": "19.3.0",
+    "postcss": "8.5.32",
+    "tailwindcss": "4.3.5",
+    "typescript": "5.9.3"
+  }
+}
